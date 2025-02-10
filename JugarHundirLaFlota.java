@@ -230,7 +230,7 @@ public class JugarHundirLaFlota {
         seleccionarDificultad();
         tableroBarcos();
         posicionBarcos();
-        imprimirTablero(); // Comentar esta línea para no imprimir el mapa
+        // imprimirTablero(); // Comentar esta línea para no imprimir el mapa
         tableroDisparado();
     }
 }
