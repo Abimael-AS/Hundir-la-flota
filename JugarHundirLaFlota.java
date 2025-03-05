@@ -29,7 +29,7 @@ public class JugarHundirLaFlota {
         switch (dificultad) {
             case "1":
                 intentos = 50;
-                barcosRestantes = 10;
+                barcosRestantes = 23;
                 lanchas = 5;
                 buques = 3;
                 acorazados = 1;
@@ -37,7 +37,7 @@ public class JugarHundirLaFlota {
                 break;
             case "2":
                 intentos = 30;
-                barcosRestantes = 5;
+                barcosRestantes = 14;
                 lanchas = 2;
                 buques = 1;
                 acorazados = 1;
@@ -45,7 +45,7 @@ public class JugarHundirLaFlota {
                 break;
             case "3":
                 intentos = 10;
-                barcosRestantes = 2;
+                barcosRestantes = 4;
                 lanchas = 1;
                 buques = 1;
                 acorazados = 0;
@@ -64,14 +64,30 @@ public class JugarHundirLaFlota {
         System.out.println("Dificultad seleccionada: " + dificultad);
     }
 
-    public static char[][] tableroBarcos() {
+    public static void tableroBarcos() {
         tablero = new char[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 tablero[i][j] = '-';
             }
         }
-        return tablero;
+        System.out.print("  ");
+        for (int num = 1; num <= 10; num++){
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+        char letra = 'A';
+        for (int i=0; i<10; i++){
+            System.out.print(letra + " ");
+            
+            for (int j=0; j<10; j++){
+                System.out.print(tablero[i][j] + " ");
+            }
+            System.out.println();
+            letra++;
+        }
+
     }
 
     public static void colocarBarcoAleatorio(char caracter, int cantidad, int longitud, boolean vertical) {
@@ -134,35 +150,17 @@ public class JugarHundirLaFlota {
     }
 
     public static void imprimirTableroJugador() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (tablero[i][j] == 'A' || tablero[i][j] == 'X') {
-                    System.out.print(tablero[i][j] + " ");
-                } else {
-                    System.out.print("- ");
-                }
-            }
+        System.out.print("  "); // Espacio para la columna de letras
+        for (int num = 1; num <= 10; num++) {
+            System.out.print(num + " ");
         }
-    }
+        System.out.println();
 
-    public static void imprimirTablerosLadoALado() {
-        // System.out.println("Tablero de Barcos\t\tTablero del Jugador");
-        // for (int i = 0; i < 10; i++) {
-        //     for (int j = 0; j < 10; j++) {
-        //         System.out.print(tablero[i][j] + " ");
-        //     }
-        //     System.out.print("\t\t");
-        //     for (int j = 0; j < 10; j++) {
-        //         if (tablero[i][j] == 'A' || tablero[i][j] == 'X') {
-        //             System.out.print(tablero[i][j] + " ");
-        //         } else {
-        //             System.out.print("- ");
-        //         }
-        //     }
-        //     System.out.println();
-        // }
-        System.out.println("Tablero del Jugador");
+        // Letras de la A a la J
+        char letra = 'A';
         for (int i = 0; i < 10; i++) {
+            // Imprimir la letra correspondiente a la fila actual
+            System.out.print(letra + " ");
             for (int j = 0; j < 10; j++) {
                 if (tablero[i][j] == 'A' || tablero[i][j] == 'X') {
                     System.out.print(tablero[i][j] + " ");
@@ -171,6 +169,48 @@ public class JugarHundirLaFlota {
                 }
             }
             System.out.println();
+            letra++;
+        }
+    }
+
+    public static void imprimirTablerosLadoALado() {
+        /*System.out.println("Tablero de Barcos\t\tTablero del Jugador");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(tablero[i][j] + " ");
+            }
+            System.out.print("\t\t");
+            for (int j = 0; j < 10; j++) {
+                if (tablero[i][j] == 'A' || tablero[i][j] == 'X') {
+                    System.out.print(tablero[i][j] + " ");
+                } else {
+                    System.out.print("- ");
+                }
+            }
+            System.out.println();
+        }*/
+        System.out.println("Tablero del Jugador");
+        // Imprimir la fila de números del 1 al 10
+        System.out.print("  "); // Espacio para la columna de letras
+        for (int num = 1; num <= 10; num++) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+        // Letras de la A a la J
+        char letra = 'A';
+        for (int i = 0; i < 10; i++) {
+            // Imprimir la letra correspondiente a la fila actual
+            System.out.print(letra + " ");
+            for (int j = 0; j < 10; j++) {
+                if (tablero[i][j] == 'A' || tablero[i][j] == 'X') {
+                    System.out.print(tablero[i][j] + " ");
+                } else {
+                    System.out.print("- ");
+                }
+            }
+            System.out.println();
+            letra++;
         }
     }
 
@@ -222,7 +262,7 @@ public class JugarHundirLaFlota {
 
         // Mostrar el mapa completo al final del juego
         System.out.println("Mapa completo:");
-        imprimirTablero();
+        imprimirTableroJugador();
     }
 
     public static void main(String[] args) {
@@ -230,7 +270,7 @@ public class JugarHundirLaFlota {
         seleccionarDificultad();
         tableroBarcos();
         posicionBarcos();
-        // imprimirTablero(); // Comentar esta línea para no imprimir el mapa
+        //imprimirTablero(); // Comentar esta línea para no imprimir el mapa
         tableroDisparado();
     }
 }
